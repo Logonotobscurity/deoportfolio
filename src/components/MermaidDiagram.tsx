@@ -16,22 +16,33 @@ const MermaidDiagram = ({ chart }: MermaidProps) => {
   const [svg, setSvg] = useState<string | null>(null);
 
   useEffect(() => {
+    // Helper function to get computed style
+    const getComputedColor = (variable: string) => {
+      if (typeof window === 'undefined') return '';
+      const style = getComputedStyle(document.documentElement);
+      const hslValue = style.getPropertyValue(variable).trim();
+      // This is a simplified conversion for HSL string to HEX for mermaid
+      // It assumes format `h s% l%`
+      const [h, s, l] = hslValue.split(' ').map(parseFloat);
+      return `hsl(${h}, ${s}%, ${l}%)`;
+    };
+
     mermaid.initialize({
       startOnLoad: false,
       theme: 'base',
       darkMode: true,
       securityLevel: 'loose',
       themeVariables: {
-        background: 'hsl(var(--background))',
-        primaryColor: 'hsl(var(--card))',
-        primaryTextColor: 'hsl(var(--foreground))',
-        lineColor: 'hsl(var(--primary))',
-        textColor: 'hsl(var(--foreground))',
-        mainBkg: 'hsl(var(--primary) / 0.1)',
-        primaryBorderColor: 'hsl(var(--primary))',
-        secondaryColor: 'hsl(var(--accent) / 0.1)',
-        secondaryBorderColor: 'hsl(var(--accent))',
-        tertiaryColor: 'hsl(var(--card))',
+        background: getComputedColor('--background'),
+        primaryColor: getComputedColor('--card'),
+        primaryTextColor: getComputedColor('--foreground'),
+        lineColor: getComputedColor('--primary'),
+        textColor: getComputedColor('--foreground'),
+        mainBkg: `hsla(${getComputedColor('--primary').match(/\d+/g)?.join(', ')}, 0.1)`,
+        primaryBorderColor: getComputedColor('--primary'),
+        secondaryColor: `hsla(${getComputedColor('--accent').match(/\d+/g)?.join(', ')}, 0.1)`,
+        secondaryBorderColor: getComputedColor('--accent'),
+        tertiaryColor: getComputedColor('--card'),
         fontSize: '14px',
         fontFamily: 'Satoshi, sans-serif'
       }
