@@ -3,7 +3,7 @@ import CPUDisplay from './CPUDisplay';
 
 const Hero = () => {
   return (
-    <section className="h-screen min-h-[700px] flex items-center justify-center relative overflow-hidden">
+    <section className="h-screen min-h-[800px] flex items-center justify-center relative overflow-hidden pt-16">
       <div className="absolute inset-0 z-0 opacity-40">
         <KubernetesPod />
       </div>
@@ -15,11 +15,10 @@ const Hero = () => {
           Adeola Daramola
         </h1>
         <p className="text-xl md:text-2xl mt-4 text-primary font-semibold">
-          Senior DevOps / Cloud Engineer
+          Senior DevOps & Cloud Engineer | Frontend Designer
         </p>
-        <p className="max-w-lg mx-auto mt-4 text-muted-foreground">
-          5+ years orchestrating large-scale Kubernetes migrations,
-          fintech integrations & blockchain infra.
+        <p className="max-w-2xl mx-auto mt-4 text-muted-foreground">
+          Senior DevOps/Cloud Engineer with 5+ years of extensive experience leading Kubernetes migrations, fintech integrations, and blockchain infrastructure upgrades. Adept at cloud platforms including AWS, Azure, and GCP, with proficiency in Terraform, Ansible, Kubernetes, and CI/CD pipelines. Passionate about delivering scalable, secure, and innovative solutions in complex environments.
         </p>
         <div className="mt-8">
           <CPUDisplay />
