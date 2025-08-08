@@ -18,25 +18,29 @@ const MermaidDiagram = ({ chart }: MermaidProps) => {
   useEffect(() => {
     mermaid.initialize({
       startOnLoad: false,
-      theme: 'dark',
+      theme: 'base',
       darkMode: true,
       securityLevel: 'loose',
       themeVariables: {
-        background: '#0A0A0B',
-        primaryColor: '#111214',
-        primaryTextColor: '#F5F5F5',
-        lineColor: '#FF007A',
-        textColor: '#F5F5F5',
-        mainBkg: '#00E5FF22',
-        primaryBorderColor: '#00E5FF',
-        secondaryColor: '#FF007A22',
-        secondaryBorderColor: '#FF007A'
+        background: 'hsl(var(--background))',
+        primaryColor: 'hsl(var(--card))',
+        primaryTextColor: 'hsl(var(--foreground))',
+        lineColor: 'hsl(var(--primary))',
+        textColor: 'hsl(var(--foreground))',
+        mainBkg: 'hsl(var(--primary) / 0.1)',
+        primaryBorderColor: 'hsl(var(--primary))',
+        secondaryColor: 'hsl(var(--accent) / 0.1)',
+        secondaryBorderColor: 'hsl(var(--accent))',
+        tertiaryColor: 'hsl(var(--card))',
+        fontSize: '14px',
+        fontFamily: 'Satoshi, sans-serif'
       }
     });
 
     const renderMermaid = async () => {
       if (ref.current) {
         try {
+          // The chart content is wrapped in a div to allow for styling
           const { svg: renderedSvg } = await mermaid.render(id, chart);
           setSvg(renderedSvg);
         } catch (error) {
@@ -50,8 +54,8 @@ const MermaidDiagram = ({ chart }: MermaidProps) => {
 
   if (!svg) {
     return (
-      <div className="flex items-center justify-center p-8">
-        <p className="text-muted-foreground">Loading diagram...</p>
+      <div className="flex items-center justify-center p-8 min-h-[200px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -59,7 +63,7 @@ const MermaidDiagram = ({ chart }: MermaidProps) => {
   return (
     <div
       ref={ref}
-      className="mermaid-container"
+      className="mermaid-container w-full h-full flex items-center justify-center [&>svg]:max-w-full [&>svg]:h-auto"
       dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
