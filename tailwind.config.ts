@@ -10,9 +10,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
-        code: ['"Source Code Pro"', 'monospace'],
+        body: ['Satoshi', 'sans-serif'],
+        headline: ['Satoshi', 'sans-serif'],
+        code: ['"Martian Mono"', 'monospace'],
+        accent: ['"Crimson Pro"', 'serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
