@@ -3,45 +3,47 @@ export const timelineEvents = [
     date: 'Aug 2023 – Present',
     company: 'Sterling Bank',
     role: 'Lead DevOps Engineer',
-    achievement: 'Reduced deployment time by 50% and manual effort by 80% through robust automation and CI/CD pipelines.',
+    achievement: 'Led migration of 2000+ Azure App Services to OpenShift/Kubernetes, using Helm charts and ArgoCD to achieve zero downtime for core banking apps.',
   },
   {
     date: 'Jul 2022 – Jul 2023',
     company: 'Zone Network',
-    role: 'System Integrator',
-    achievement: 'Achieved a 95% increase in Transaction Processing Speed (TPS) and integrated 5 new fintechs into the payment network.',
+    role: 'System Integrator Engineer',
+    achievement: 'Directed a cross-functional team of 22 engineers to migrate containerized smart contracts from Docker Swarm to multiple large-scale Kubernetes clusters, boosting Transactions Per Second (TPS) by over 95%.',
   },
   {
     date: 'May 2020 – Jun 2022',
     company: 'Alt Bank',
     role: 'Cloud Engineer',
-    achievement: 'Built an API gateway handling 500 req/sec and cut down configuration errors by 25% using Infrastructure as Code.',
+    achievement: 'Successfully implemented and deployed a high-performance API gateway with a comprehensive suite of financial services APIs; capable of handling 500+ requests per second.',
   },
   {
     date: 'Jun 2019 – Mar 2020',
     company: 'Tek Experts',
-    role: 'DevOps Intern',
-    achievement: 'Developed and maintained CI/CD pipelines for applications built with Node.js, Laravel, and Spring Boot.',
+    role: 'Cloud Infrastructure Engineer Intern',
+    achievement: 'Streamlined development workflows by implementing CI/CD pipelines with GitLab, automating builds and deployments for Node.js, Laravel, and Spring Boot applications on Microsoft Azure.',
   },
    {
-    date: '2014 – 2019',
-    company: 'Ladoke Akintola University of Technology',
-    role: 'B.Tech, Computer Science',
-    achievement: 'Focused on systems engineering and distributed computing.',
+    date: '2022 – 2023',
+    company: 'Altschool Africa',
+    role: 'Diploma in Software Engineering, Major in Cloud Computing',
+    achievement: 'Gained expertise in cloud infrastructure and modern software engineering practices.',
   },
 ];
 
 export const certifications = [
+  'AWS Certified Solutions Architect - Associate',
+  'AWS Certified Cloud Practitioner',
+  'Diploma in Cloud Engineering',
   'Certified Kubernetes Administrator (CKA)',
   'Microsoft Certified: Azure DevOps Engineer Expert',
   'HashiCorp Certified: Terraform Associate',
-  'AWS Certified Solutions Architect – Associate',
 ];
 
 export const bentoItems = [
   {
     title: 'Sterling Bank Migration',
-    description: 'Migrated over 2,000 Azure App Services to a containerized OpenShift environment with zero downtime, using Helm and ArgoCD for seamless deployment.',
+    description: 'Led migration of 2000+ Azure App Services to OpenShift/Kubernetes, using Helm charts and ArgoCD to achieve zero downtime for core banking apps.',
     className: 'lg:col-span-3',
     diagram: `
 %%{init: {'theme':'dark'}}%%
@@ -53,7 +55,7 @@ graph LR
   },
   {
     title: 'Zone Network TPS Boost',
-    description: 'Engineered a 95% TPS boost across 6 integrated banks by optimizing the blockchain infrastructure and inter-bank communication protocols.',
+    description: 'Directed a cross-functional team of 22 engineers to migrate containerized smart contracts to Kubernetes, boosting Transactions Per Second (TPS) by over 95%.',
     className: 'lg:col-span-3',
     diagram: `
 %%{init: {'theme':'dark'}}%%
@@ -71,7 +73,7 @@ graph TD
   },
   {
     title: 'Alt Bank API Gateway',
-    description: 'Designed and deployed a high-throughput API gateway capable of handling 500 requests/second, improving overall system resilience and scalability.',
+    description: 'Deployed a high-performance API gateway handling 500+ requests/second, supporting 100+ concurrent users and accelerating product development for 30+ vendors.',
     className: 'lg:col-span-2',
     diagram: `
 %%{init: {'theme':'dark'}}%%
