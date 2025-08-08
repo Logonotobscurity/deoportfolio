@@ -10,12 +10,14 @@ export default function Home() {
   return (
     <main className="bg-background text-foreground font-body antialiased">
       <Header />
-      <Hero />
-      <Skills />
-      <BentoSection />
-      <Timeline />
-      <SocialHub />
-      <Footer />
+      <div className="flex flex-col">
+        <Hero />
+        <Skills />
+        <BentoSection />
+        <Timeline />
+        <SocialHub />
+        <Footer />
+      </div>
     </main>
   );
 }
