@@ -6,6 +6,29 @@ import { Analytics } from '@vercel/analytics/react';
 export const metadata: Metadata = {
   title: 'Devfolio | Adeola Daramola',
   description: '5+ years orchestrating large-scale Kubernetes migrations, fintech integrations & blockchain infra.',
+  metadataBase: new URL('https://deoportfolio.vercel.app/'), // Replace with your actual domain
+  openGraph: {
+    title: 'Devfolio | Adeola Daramola',
+    description: '5+ years orchestrating large-scale Kubernetes migrations, fintech integrations & blockchain infra.',
+    url: 'https://deoportfolio.vercel.app/', // Replace with your actual domain
+    siteName: 'Devfolio',
+    images: [
+      {
+        url: '/og-image.jpg', // Placeholder image path - replace with your actual OG image path
+        width: 1200, // Adjust based on your image dimensions
+        height: 630, // Adjust based on your image dimensions
+        alt: 'Adeola Daramola Portfolio', // Alt text for the image
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Devfolio | Adeola Daramola',
+    description: '5+ years orchestrating large-scale Kubernetes migrations, fintech integrations & blockchain infra.',
+    images: ['/og-image.jpg'], // Placeholder image path - replace with your actual OG image path
+  },
 };
 
 export default function RootLayout({

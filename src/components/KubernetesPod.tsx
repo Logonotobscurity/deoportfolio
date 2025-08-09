@@ -35,6 +35,8 @@ const KubernetesPod = () => {
       wireframe: true,
       metalness: 0.5,
       roughness: 0.1,
+ transparent: true,
+ opacity: 0.7,
     });
     const pod = new THREE.Mesh(geometry, material);
     scene.add(pod);

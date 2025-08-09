@@ -79,7 +79,11 @@ const MermaidDiagram = ({ chart }: MermaidProps) => {
       ref={ref}
       className="mermaid-container w-full h-full flex items-center justify-center [&>svg]:max-w-full [&>svg]:h-auto"
       dangerouslySetInnerHTML={{ __html: svg }}
-    />
+    >
+      {/* Provide a basic text alternative for screen readers */}
+ <span className="sr-only">Diagram: Visual representation. A text description is needed for full accessibility.</span>
+    </div>
+
   );
 };
 

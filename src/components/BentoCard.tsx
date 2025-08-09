@@ -21,17 +21,21 @@ interface BentoCardProps {
 
 const BentoCard: FC<BentoCardProps> = ({ title, description, diagram, className }) => {
   return (
-    <Card className={cn("bg-card/50 backdrop-blur-sm border-border/20 shadow-lg hover:shadow-primary/20 transition-shadow duration-300 flex flex-col", className)}>
+    <Card className={cn("bg-card/50 backdrop-blur-sm border border-border/30 shadow-xl hover:shadow-primary/30 transition-shadow duration-300 flex flex-col p-6", className)}>
       <CardHeader>
         <CardTitle className="text-lg md:text-xl font-bold text-primary">{title}</CardTitle>
       </CardHeader>
-      <CardContent className="flex-grow flex flex-col">
+      <CardContent className="flex-grow flex flex-col p-0">
         <p className="text-muted-foreground flex-grow text-sm md:text-base">{description}</p>
         <Accordion type="single" collapsible className="w-full mt-4">
           <AccordionItem value="item-1" className="border-t border-border/20 pt-2">
-            <AccordionTrigger className="text-sm hover:no-underline text-accent [&[data-state=open]>svg]:text-accent">
+            {/* Ensure the AccordionTrigger button is the interactive element */}
+            <AccordionTrigger
+ className="text-sm hover:no-underline text-accent [&[data-state=open]>svg]:text-accent"
+ aria-label={`Toggle diagram for ${title}`}
+            >
               <div className="flex items-center gap-2">
-                <Code className="h-4 w-4" />
+ <Code className="h-4 w-4" aria-hidden="true" /> {/* Hide decorative icon from screen readers */}
                 View Diagram
               </div>
             </AccordionTrigger>

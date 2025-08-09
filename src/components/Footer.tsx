@@ -65,7 +65,7 @@ const Footer = () => {
         </FadeIn>
 
         <FadeIn delay={0.3}>
-          <div className="mt-12 flex justify-center space-x-6">
+          <div className="mt-12 flex justify-center space-x-6 flex-wrap">
             {socialLinks.map((link) => (
               <a
                 key={link.name}
