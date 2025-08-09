@@ -19,48 +19,51 @@ const MermaidDiagram = ({ chart }: MermaidProps) => {
     // Helper function to get computed style
     const getComputedColor = (variable: string) => {
       if (typeof window === 'undefined') return '';
-      const style = getComputedStyle(document.documentElement);
-      const hslValue = style.getPropertyValue(variable).trim();
-      // This is a simplified conversion for HSL string to HEX for mermaid
-      // It assumes format `h s% l%`
-      const [h, s, l] = hslValue.split(' ').map(parseFloat);
-      return `hsl(${h}, ${s}%, ${l}%)`;
+      // Create a temporary element to get computed styles
+      const tempEl = document.createElement('div');
+      tempEl.style.setProperty('color', `hsl(var(${variable}))`);
+      document.body.appendChild(tempEl);
+      const color = getComputedStyle(tempEl).color;
+      document.body.removeChild(tempEl);
+      return color;
     };
+    
+    if (typeof window !== 'undefined') {
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'base',
+          darkMode: true,
+          securityLevel: 'loose',
+          themeVariables: {
+            background: getComputedColor('--background'),
+            primaryColor: getComputedColor('--card'),
+            primaryTextColor: getComputedColor('--foreground'),
+            lineColor: getComputedColor('--primary'),
+            textColor: getComputedColor('--foreground'),
+            mainBkg: getComputedColor('--primary'),
+            primaryBorderColor: getComputedColor('--primary'),
+            secondaryColor: getComputedColor('--accent'),
+            secondaryBorderColor: getComputedColor('--accent'),
+            tertiaryColor: getComputedColor('--card'),
+            fontSize: '14px',
+            fontFamily: 'Satoshi, sans-serif'
+          }
+        });
 
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: 'base',
-      darkMode: true,
-      securityLevel: 'loose',
-      themeVariables: {
-        background: getComputedColor('--background'),
-        primaryColor: getComputedColor('--card'),
-        primaryTextColor: getComputedColor('--foreground'),
-        lineColor: getComputedColor('--primary'),
-        textColor: getComputedColor('--foreground'),
-        mainBkg: `hsla(${getComputedColor('--primary').match(/\d+/g)?.join(', ')}, 0.1)`,
-        primaryBorderColor: getComputedColor('--primary'),
-        secondaryColor: `hsla(${getComputedColor('--accent').match(/\d+/g)?.join(', ')}, 0.1)`,
-        secondaryBorderColor: getComputedColor('--accent'),
-        tertiaryColor: getComputedColor('--card'),
-        fontSize: '14px',
-        fontFamily: 'Satoshi, sans-serif'
-      }
-    });
-
-    const renderMermaid = async () => {
-      if (ref.current) {
-        try {
-          // The chart content is wrapped in a div to allow for styling
-          const { svg: renderedSvg } = await mermaid.render(id, chart);
-          setSvg(renderedSvg);
-        } catch (error) {
-          console.error('Mermaid rendering failed:', error);
-          setSvg('<p class="text-destructive">Failed to render diagram.</p>');
+      const renderMermaid = async () => {
+        if (ref.current) {
+          try {
+            // The chart content is wrapped in a div to allow for styling
+            const { svg: renderedSvg } = await mermaid.render(id, chart);
+            setSvg(renderedSvg);
+          } catch (error) {
+            console.error('Mermaid rendering failed:', error);
+            setSvg('<p class="text-destructive">Failed to render diagram.</p>');
+          }
         }
-      }
-    };
-    renderMermaid();
+      };
+      renderMermaid();
+    }
   }, [chart, id]);
 
   if (!svg) {
