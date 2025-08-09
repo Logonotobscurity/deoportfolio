@@ -16,9 +16,11 @@ const CPUDisplay = () => {
     };
 
     ws.onmessage = (event) => {
-      // Assuming the message data is the CPU usage as a string or number
       try {
         const data = JSON.parse(event.data as string);
+        console.log('Received WebSocket data:', data); // Log raw data
+        const { cpu } = data; // Extract cpu from the parsed data
+        console.log('Parsed CPU value:', cpu); // Log parsed CPU value
         if (typeof data.cpu === 'number') {
           setCpuUsage(data.cpu);
         }
@@ -46,6 +48,19 @@ const CPUDisplay = () => {
       }
     };
   }, []); // Empty dependency array means this effect runs once on mount and cleans up on unmount
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Simulate WebSocket data for CPU usage
+      const newUsage = Math.floor(Math.random() * (25 - 5 + 1) + 5);
+      setCpuUsage(newUsage);
+    }, 2000);
+
+    // Initial value
+    setCpuUsage(Math.floor(Math.random() * (25 - 5 + 1) + 5));
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Badge
